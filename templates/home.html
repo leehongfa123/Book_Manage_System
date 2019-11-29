@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/static/css/home.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+
+    </style>
+
+</head>
+
+<body>
+
+    {# 导航栏部分#}
+    <div class="container-fluid">
+            <div id="menu2" class="menu row">
+                <ul>
+                    <li class="col-lg-1"><a href="{% url 'home' %}">首　　页</a></li>
+                    <li class="col-lg-1"><a href="{% url 'book_home' %}">图书管理系统</a></li>
+                    <li class="col-lg-1"><a href="{% url 'author' %}">作者管理系统</a></li>
+                    <li class="col-lg-1"><a href="{% url 'publish_home' %}">出版社管理系统</a></li>
+                    <li class="pull-right"><a href="#">登录/注册</a></li>
+                </ul>
+            </div>
+
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+
+        {% block display %}
+            <div class="col-lg-2">
+
+                <a href="" type="button" class="btn btn-info btn-lg btn-block nav-btn">首  页</a>
+
+                <a href="" type="button" class="btn btn-primary btn-lg btn-block nav-btn">图书管理系统简介</a>
+                <a href="" type="button" class="btn btn-success btn-lg btn-block nav-btn">使用手册</a>
+                <a href="" type="button" class="btn btn-danger btn-lg btn-block nav-btn">联系我们</a>
+
+            </div>
+            <div class="col-md-10" id="info">
+                <div class="jumbotron">
+                    <h2>欢迎使用图书管理系统</h2>
+                    <p>本系统可以查看、编辑图书信息</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+        {% endblock %}
+
+
+    </div>
+</div>
+
+
+
+
+    {#    引入导航栏的js文件#}
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/home.js"></script>
+
+    {#引入bootstrap的js文件#}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

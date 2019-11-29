@@ -1,0 +1,86 @@
+{% extends "author_manager/author_home.html" %}
+
+{% block authors_display %}
+
+    <style>
+        .form-control {
+            width: 150px !important;
+        }
+
+        #bookinfo {
+            margin-top: 30px;
+            height: 300px;
+            overflow: auto;
+        }
+
+    </style>
+
+
+    <form class="form-inline" action="" method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="exampleInputName2">姓名</label>
+            <input type="text" class="form-control" id="exampleInputName2" placeholder="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">年龄</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="age" name="age">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">地址</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="addr" name="addr">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">电话</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="tel" name="tel">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">邮箱</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-success" style="width: 60px">查询</button>
+    </form>
+
+    {#    下面时查询结果展示部分#}
+    <div id="bookinfo">
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            {% for find_item in find_res %}
+
+                <div class="panel-group" id="accordion{{ find_item.nid }}" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading{{ find_item.nid }}">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapse{{ find_item.nid }}"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    {{ find_item.name }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse{{ find_item.nid }}" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                {{ find_item.name }}的信息描述
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends "author_manager/author_home.html" %}
+
+{% block authors_display %}
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>名字</th>
+            <th>年龄</th>
+            <th>地址</th>
+            <th>电话</th>
+            <th>邮箱</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.age }}</td>
+
+                <td>
+                    {% for detail in author_details %}
+                        {% if detail.nid == author.detail_id %}
+                            {{ detail.addr }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for detail in author_details %}
+                        {% if detail.nid == author.detail_id %}
+                            {{ detail.tel }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+
+                <td>{{ author.email }}</td>
+
+                <td>
+                    <a href="{% url 'edit_author' author.nid %}" class="btn btn-success btn-sm">编辑</a>
+                    <a href="{% url 'del_author' author.nid %}" class="btn btn-danger btn-sm">删除</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

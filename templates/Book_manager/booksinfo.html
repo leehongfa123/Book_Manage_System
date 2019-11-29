@@ -1,0 +1,106 @@
+{% extends "Book_manager/book_home.html" %}
+
+{% block authors_display %}
+
+    <style>
+        .form-control {
+            width: 200px !important;
+        }
+
+        #bookinfo {
+            margin-top: 30px;
+            height: 300px;
+            overflow: auto;
+        }
+
+    </style>
+
+
+    <form class="form-inline" action="" method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="exampleInputName2">书名</label>
+            <input type="text" class="form-control" id="exampleInputName2" placeholder="title" name="title">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">出版社</label>
+            <select name="publish" id="publish" class="form-control">
+
+                <option value="0">请选择</option>
+                {% for publish in publish_list %}
+
+                    <option value="{{ publish.nid }}">{{ publish.name }}</option>
+
+                {% endfor %}
+
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">作者</label>
+            <select name="author" id="author" class="form-control">
+                <option value="0">请选择</option>
+                {% for author in author_list %}
+
+                    <option value="{{ author.nid }}">{{ author.name }}</option>
+
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">出版日期</label>
+            <input type="date" class="form-control" id="exampleInputEmail2" placeholder="pub_date" name="pub_date">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">价格</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" placeholder="price" name="price">
+        </div>
+
+
+        <button type="submit" class="btn btn-success" style="width: 60px">查询</button>
+    </form>
+
+
+    {#    下面时查询结果展示部分#}
+    <div id="bookinfo">
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            {% for find_item in find_res %}
+
+                <div class="panel-group" id="accordion{{ find_item.nid }}" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading{{ find_item.nid }}">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapse{{ find_item.nid }}"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    {{ find_item.title }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse{{ find_item.nid }}" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                {{ find_item.title }}的信息描述
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

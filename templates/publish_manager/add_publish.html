@@ -1,0 +1,33 @@
+{% extends "publish_manager/publish_home.html" %}
+
+{% block authors_display %}
+
+    <form action="{% url 'add_publish' %}" method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" >名字</label>
+            <input type="text" class="form-control" id="name" placeholder="name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">地址</label>
+            <input type="text" class="form-control" id="age" placeholder="addr" name="addr">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">电话</label>
+            <input type="text" class="form-control" id="tel" placeholder="tel" name="tel">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">邮箱</label>
+            <input type="text" class="form-control" id="email" placeholder="email" name="email">
+        </div>
+        <input type="submit" class="btn btn-default pull-right btn-success" value="提交">
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block display %}
+
+
+    <div class="col-lg-2">
+                <a href="{% url 'publish_home' %}" type="button" class="btn btn-info btn-lg btn-block nav-btn">首  页</a>
+
+                <a href="{% url 'all_publishs' %}" type="button" class="btn btn-primary btn-lg btn-block nav-btn">查看所有出版社</a>
+                <a href="{% url 'add_publish' %}" type="button" class="btn btn-success btn-lg btn-block nav-btn">添加出版社</a>
+                <a href="{% url 'find_publish' %}" type="button" class="btn btn-danger btn-lg btn-block nav-btn">查找出版社</a>
+    </div>
+
+    <div class="col-md-10" id="info">
+        {% block authors_display %}
+
+            <div class="jumbotron">
+                <h2>欢迎使用图书管理系统</h2>
+                <p>本系统可以查看、编辑图书信息</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            </div>
+
+        {% endblock %}
+     </div>
+
+
+{% endblock %}
